@@ -1,0 +1,112 @@
+
+.pop-up{
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 20rem;
+    width: 70rem;
+
+    border-radius: 0.5rem;
+
+    background-color: #485d6b;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
+}
+
+.popup-background {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0;
+    transition: all 0.5s linear;
+}
+.popup-background.visible {
+    z-index: 100;
+    opacity: 0.6;
+}
+
+.pop-up-buttons{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.pop-up-buttons p, button[type="button"]{
+    font-size: 1.3rem;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    background-color: #f18f01;
+    border-radius: 0.2rem;
+    width: 12rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+    border: none;
+    color: white;
+}
+.pop-up-buttons p:hover, button[type="button"]:hover{
+    opacity: 0.7;
+    background-color: white;
+    color: black;
+}
+
+.pop-up ul{
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pop-up li{
+    margin-top: 1rem;
+    list-style-type: circle;
+}
+.pop-up .text-area{
+    display: block;
+}
+#container-sort-by p{
+    display: flex;
+    justify-content: center;
+}
+
+#container-sort-by .pop-up-buttons{
+    width: 55%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3rem;
+}
+.pop-up input[type='radio'] {
+    margin-top: 4rem;
+    margin-right: 1rem;
+    margin-left: 4rem;
+}
+
+.pop-up label{
+    font-size: 1.4rem;
+}
+
+
+
+div.hidden{
+    display: none;
+}
+#container-update-form input[type=text]{
+    margin-left: 1rem;
+}
+#container-update-form #new-lat, #container-update-form #new-long{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}

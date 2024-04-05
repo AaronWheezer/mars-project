@@ -1,0 +1,64 @@
+
+.qr-code{
+    margin-left: 20.5rem;
+    padding: 2rem;
+    height: 90vh;
+}
+.qr-code h3{
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    margin-left: 2.6rem;
+}
+
+.qr-code section:last-of-type{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.qr-code article{
+    width: 30rem;
+    height: 35rem;
+    background-color: #2f404d;
+    border-radius: 1rem;
+
+    box-shadow: 10px 10px 14px 0 rgba(110,110,110,0.54);
+}
+.qr-code .left-area {
+    display: flex;
+    background-image: url(../media/wh-background-qr-code.png);
+    background-size: cover;
+    background-position: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    overflow: hidden;
+}
+
+.qr-code .right-area{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+.qr-code .right-area img{
+    margin-top: 2rem;
+    width: 17rem;
+    max-width: 20rem;
+}
+.qr-code .right-area div:last-of-type{
+    width: 80%;
+}
+
+.qr-code .pop-up p{
+    margin: 1rem;
+    font-size: 1.5rem;
+
+}
+.qr-code .pop-up{
+    height: auto;
+}

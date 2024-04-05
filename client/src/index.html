@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>DUSTY DEPOT DASHBOARD</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/containers.css">
+    <link rel="stylesheet" href="assets/css/qr-code.css">
+    <link rel="stylesheet" href="assets/css/damage-report.css">
+    <link rel="stylesheet" href="assets/css/pop-ups.css">
+
+    <script src="assets/js/html-connection/script.js"></script>
+    <script src="assets/js/server-connection/main.js"></script>
+    <script src="assets/js/server-connection/api.js"></script>
+    <script src="assets/js/html-connection/navigation.js"></script>
+    <script src="assets/js/html-connection/home.js"></script>
+    <script src="assets/js/html-connection/map.js"></script>
+    <script src="assets/js/server-connection/external-APIs/marShip.js"></script>
+    <script src="assets/js/html-connection/containers.js"></script>
+    <script src="assets/js/html-connection/report.js"></script>
+    <script src="assets/js/server-connection/barcodeDetectionAPI.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.0.2/dist/dbr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/barcode-detection@0.4.1/dist/barcode-detector.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- OpenLayers api-->
+    <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css"/>
+
+</head>
+<body>
+
+<aside class="navigation">
+    <h1>DASHBOARD</h1>
+    <label for="search"></label>
+    <input type="text" id="search" placeholder="search" />
+    <nav>
+        <ul>
+            <li id="home" class="selected">Home</li>
+            <li id="containers">Containers</li>
+            <li id="pallets">Pallets</li>
+            <li id="qr-code">QR-code</li>
+            <li id="damage-report">Report</li>
+        </ul>
+    </nav>
+</aside>
+
+<div class="popup-background"></div>
+
+<div class="home previous-selected">
+    <div class="grid-home">
+        <div class="warehouse-container">
+          <div class="warehouse-1"><h2>Space Station</h2></div>
+          <div class="warehouse-2"><h2>Space Station II</h2></div>
+          <div class="warehouse-3"><h2>Space Station III</h2></div>
+          <div class="warehouse-4"><h2>Mining Centre</h2></div>
+          <div class="warehouse-5"><h2>Mining Centre II</h2></div>
+          <div class="warehouse-6"><h2>Ground Station</h2></div>
+        </div>
+
+        <div class="all-warehouses-btn">show all warehouses</div>
+
+        <div class="customers">
+          <section>
+            <h3>customers</h3>
+            <p class="view-all">view all</p>
+          </section>
+          <section>
+            <h5>sonar</h5>
+            <div class="company-container">
+              <ul>
+                <li>
+                  <a href="pages/company.html" class="company">COMPANY_NAME</a>
+                </li>
+                <li>
+                  <a href="pages/company.html" class="company">COMPANY_NAME</a>
+                </li>
+                <li>
+                  <a href="pages/company.html" class="company">COMPANY_NAME</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <div class="graphs">
+          <section>
+            <h3>graphs</h3>
+          </section>
+          <section>
+            <h5>sonar</h5>
+            <div class="graph-1">
+              <canvas id="bar-chart"></canvas>
+            </div>
+            <div class="graph-2">
+              <canvas id="doughnut-chart"></canvas>
+            </div>
+            <div class="container-map">
+              <div id="centra-map" class="map"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+</div>
+
+<div class="containers hidden">
+    <div class="rented-containers">
+        <section>
+            <h3>Rented Containers</h3>
+            <ul>
+                <li class="sort-by">Sort By</li>
+                <li class="filter">
+                    <span class="tooltip">Not implemented</span>
+                    Filter
+                </li>
+                <li>
+                    <label for="search-container"></label>
+                    <input type="text" id="search-container" placeholder="Search">
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h5>sonar</h5>
+            <div class="table">
+                <ul class="table-titles">
+                    <li>Container ID</li>
+                    <li>Location</li>
+                    <li>Size</li>
+                    <li>Rent Price</li>
+                    <li>Owner</li>
+                </ul>
+                <div class="import-table-containers"></div>
+            </div>
+        </section>
+    </div>
+    <div class="add-containers">
+        <section>
+            <h3>Add A Container</h3>
+        </section>
+        <section class="add-new-item">
+            <h5>sonar</h5>
+            <img src="assets/media/icons/container.png" alt="container">
+            <article>
+                <h5>sonar</h5>
+                <form class="add-new-container">
+                    <div class="div-container">
+                        <div>
+                            <label for="select-container">Select Container</label>
+                            <select id="select-container" name="select-container">
+                                <option value="small">small</option>
+                                <option value="medium">medium</option>
+                                <option value="large">large</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="owner">Company Owner</label>
+                            <input type="text" name="owner" id="owner">
+                        </div>
+                        <div>
+                            <label for="location">Location</label>
+                            <select name="location" id="location">
+                                <option value="warehouse_1">Warehouse Space Station</option>
+                                <option value="warehouse_2">Warehouse Space Station 2</option>
+                                <option value="warehouse_3">Warehouse Space Station 3</option>
+                                <option value="warehouse_4">Warehouse Space Station 4</option>
+                                <option value="warehouse_5">Warehouse Space Station 5</option>
+                                <option value="warehouse_6">Warehouse Space Station 6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Add Container">
+                </form>
+            </article>
+        </section>
+    </div>
+</div>
+
+
+<div class="qr-code hidden">
+    <section>
+        <h3>Scan a QR-code</h3>
+    </section>
+    <section>
+        <h5>sonar</h5>
+        <article class="left-area">
+            <h5>sonar</h5>
+            <video class="camera" muted autoplay="autoplay" playsinline="playsinline"></video>
+        </article>
+        <article class="right-area">
+             <h5>sonar</h5>
+             <div class="qr-container">
+                 <img src="assets/media/QR-phone.png" alt="QR-picture">
+             </div>
+             <div>
+                 <p>Scan a QR-code to view its details.</p>
+             </div>
+         </article>
+    </section>
+    <template id="scanner-popup">
+        <div class="pop-up">
+            <div>
+                <p id="scanned-vessel-id"></p>
+                <p id="scanned-vessel-owner"></p>
+                <div id="scanned-vessel-comment"></div>
+                <div id="scanned-vessel-content"></div>
+                <div class="pop-up-buttons">
+                    <p class="cancel">Cancel</p>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+<div class="pallets hidden">
+    <div class="rented-pallets">
+        <section>
+            <h3>Rented Pallets</h3>
+            <ul>
+                <li class="sort-by">Sort By</li>
+                <li class="filter">
+                    <span class="tooltip">Not implemented</span>
+                    Filter
+                </li>
+                <li>
+                    <label for="search-pallet"></label>
+                    <input type="text" id="search-pallet" placeholder="Search">
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h5>sonar</h5>
+            <div class="table">
+                <ul class="table-titles">
+                    <li>Pallet ID</li>
+                    <li>Location</li>
+                    <li>Owner</li>
+                </ul>
+                <div class="import-table-pallets"></div>
+            </div>
+        </section>
+    </div>
+    <div class="add-pallets">
+        <section>
+            <h3>Add A Pallet</h3>
+        </section>
+        <section class="add-new-item">
+            <h5>sonar</h5>
+            <img src="assets/media/pallet.jpg" alt="pallet">
+            <article>
+                <h5>sonar</h5>
+                <form class="add-new-pallet">
+                    <div class="div-container">
+                        <div>
+                            <label for="company-owner">Company Owner</label>
+                            <input type="text" name="company-owner" id="company-owner">
+                        </div>
+                        <div>
+                            <label for="pallet-location">Location</label>
+                            <select name="pallet-location" id="pallet-location">
+                                <option value="warehouse_1">Warehouse Space Station</option>
+                                <option value="warehouse_2">Warehouse Space Station 2</option>
+                                <option value="warehouse_3">Warehouse Space Station 3</option>
+                                <option value="warehouse_4">Warehouse Space Station 4</option>
+                                <option value="warehouse_5">Warehouse Space Station 5</option>
+                                <option value="warehouse_6">Warehouse Space Station 6</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Add Pallet">
+                </form>
+            </article>
+        </section>
+    </div>
+</div>
+
+
+<div class="damage-report hidden">
+    <div class="grid-damage-report">
+        <section class="new-damage-report">
+            <h3>Add A New Report</h3>
+            <form class="damage-report-form">
+                <div>
+                    <div>
+                        <label for="select-sort">Select Container or Pallet</label>
+                        <select name="select-sort" id="select-sort">
+                            <option value="container">Container</option>
+                            <option value="pallet">Pallet</option>
+                        </select>
+
+                        <label for="container-id-report">ID</label>
+                        <input type="number" min="10000000" max="99999999" name="container-id-report" id="container-id-report">
+
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" placeholder="Enter a description here..."></textarea>
+                    </div>
+                    <p class="errormessage"></p>
+                    <input type="submit" value="Submit Report">
+                </div>
+                <div class="image-upload-area">
+                    <label for="file-input">
+                        <img src="assets/media/icons/upload-image-color.png" alt="upload-image">
+                        <input type="file" name="file-input" id="file-input">
+                    </label>
+                </div>
+            </form>
+        </section>
+        <section class="open-reports">
+            <h5>sonar</h5>
+            <article>
+                <h3>Open Reports</h3>
+            </article>
+            <article>
+                <h5>sonar</h5>
+                <ul class="table-titles">
+                    <li>ID</li>
+                    <li>Pallet / container</li>
+                    <li>Comment</li>
+                    <li>Owner</li>
+                </ul>
+                <div class="report-location"></div>
+            </article>
+        </section>
+    </div>
+</div>
+
+
+<!--POPUPS-->
+<div class="pop-up hidden" id="container-sort-by">
+    <form>
+        <p class="text-area">Sort <span> Containers</span></p>
+
+        <input type="radio" id="container-ID" name="sorting-by" value="ID">
+        <label for="container-ID"><span>Container</span>-ID</label>
+
+        <input type="radio" id="locations" name="sorting-by" value="locations">
+        <label for="locations">locations</label>
+
+        <input type="radio" id="size" name="sorting-by" value="size" class="sort-size">
+        <label for="size" class="sort-size">size</label>
+
+        <input type="radio" id="owners" name="sorting-by" value="owners">
+        <label for="owners">owners</label>
+        <div class="pop-up-buttons">
+            <button class="cancel" type="button">Cancel</button>
+            <button class="select" type="button">Sort</button>
+        </div>
+    </form>
+</div>
+
+<div class="pop-up hidden" id="container-pallet-popup-confirmation">
+    <div>
+        <p class="text-area">Are you sure you want to add this <span></span>?</p>
+        <div class="pop-up-buttons">
+            <p class="cancel">Cancel</p>
+            <p id="confirm">Add <span></span></p>
+        </div>
+        <div class="container-details"></div>
+    </div>
+</div>
+
+<div class="pop-up hidden" id="container-succes">
+    <p class="text-area">You have successfully added a new <span></span>!</p>
+    <div class="pop-up-buttons">
+        <p class="close">Close</p>
+    </div>
+</div>
+
+<div class="pop-up hidden" id="added-report">
+    <p class="text-area">You have successfully added a new report!</p>
+    <div class="pop-up-buttons">
+        <p class="close">Close</p>
+    </div>
+</div>
+
+</body>
+</html>

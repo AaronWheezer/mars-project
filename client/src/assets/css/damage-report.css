@@ -1,0 +1,107 @@
+
+.damage-report{
+    margin-left: 20.5rem;
+    padding: 2rem;
+    height: 100vh;
+}
+.grid-damage-report {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.8fr;
+    gap: 30px 30px;
+    grid-template-areas:
+    "new-damage-report new-damage-report"
+    "open-reports open-reports";
+}
+.new-damage-report { grid-area: new-damage-report; }
+.open-reports { grid-area: open-reports; }
+
+.damage-report h3{
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+.damage-report form{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
+}
+.damage-report form > div{
+    width: 30rem;
+    background-color: #2f404d;
+    box-shadow: 10px 10px 14px 0 rgba(110,110,110,0.54);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+.damage-report form div:first-of-type{
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+}
+
+.damage-report form label{
+    margin-bottom: 0.5rem;
+}
+.damage-report form select{
+    width: 11rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.damage-report form input[type=number]{
+    width: 10.5rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.damage-report #description{
+    width: 95%;
+    height: 5rem;
+
+    padding: 0.1rem 0 0.1rem 1rem;
+
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+}
+
+.damage-report .image-upload-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.damage-report .image-upload-area img{
+    cursor: pointer;
+}
+.damage-report .image-upload-area img:hover{
+    opacity: 50%;
+}
+
+.damage-report .image-upload-area input[type=file]{
+    display: none;
+}
+
+.open-reports article:first-of-type{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.open-reports article:last-of-type{
+    overflow-y: scroll;
+    height: 30rem;
+    margin-bottom: 5rem;
+}
+
+.pallet{
+    background-color: #f18f01;
+}
+
+.table-rows .comment{
+    justify-content: left;
+}

@@ -1,0 +1,175 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.customer {
+  margin-left: 20.5rem;
+  padding: 2rem;
+  height: 100vh;
+}
+.customer h1 {
+  font-size: 5rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.6fr 1.2fr 1.2fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 30px 30px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "customer-data customer-data"
+    "warehouse-content customer-chart"
+    "warehouse-content customer-map";
+}
+
+.customer-chart {
+  grid-area: customer-chart;
+  width: 35rem;
+  height: 100%;
+}
+.customer-map {
+  grid-area: customer-map;
+  width: 35rem;
+  height: 100%;
+}
+
+.customer-data {
+  grid-area: customer-data;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.customer h3 {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+.customer h3 span {
+  margin-left: 2rem;
+  text-transform: initial;
+}
+.customer img {
+  width: 8rem;
+  border: 0.1rem solid black;
+}
+.customer-data label {
+  font-size: 1.8rem;
+}
+.customer-data select {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  padding: 0.5rem;
+  width: 18rem;
+  color: white;
+
+  line-height: 1;
+
+  border: 0;
+  border-radius: 0.5rem;
+
+  background: url(../media/br_down.png) no-repeat right #2f404d;
+  -webkit-appearance: none;
+  background-position-x: right;
+}
+
+.warehouse-content {
+  grid-area: warehouse-content;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  width: 35rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #2f404d;
+}
+.warehouse-titles {
+  width: 80%;
+  color: black;
+
+  margin: 1rem auto 2rem auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+.warehouse-content h4,
+.all-warehouses-content h4 {
+  width: 10rem;
+}
+.warehouse-titles a {
+  color: black;
+}
+.warehouse-container-location {
+  width: 80%;
+  margin: auto;
+}
+.container-overview {
+  width: 100%;
+  background-color: #2f404d;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+.container-overview div {
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.container-overview a {
+  width: 8rem;
+  padding: 0.3rem;
+  margin: 2rem 2rem 1rem 0;
+
+  background-color: #f18f01;
+  border-radius: 0.3rem;
+
+  display: flex;
+  justify-content: center;
+}
+.container-overview p,
+.container-overview ul {
+  margin: 1rem 2.5rem 0.2rem 2rem;
+  width: 12rem;
+}
+.warehouse-content ul span {
+  margin-left: 1rem;
+}
+.container-overview div:last-of-type {
+  display: flex;
+  justify-content: center;
+}
+
+.all-warehouse-content {
+  padding: 0.5rem;
+  margin-top: 2rem;
+  width: 98%;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #2f404d;
+}
+.all-warehouse-content .warehouse-container-location {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.all-warehouse-content .container-overview {
+  width: 26rem;
+  margin: 0.5rem;
+}
+
+.container-overview:hover {
+  opacity: 0.8;
+  cursor: zoom-in;
+}
+
+.view-one-container {
+  width: 100%;
+  height: 50rem;
+  background-color: #f18f01;
+}
+
+#customer-map {
+    width: 35rem;
+    height: 18rem;
+}

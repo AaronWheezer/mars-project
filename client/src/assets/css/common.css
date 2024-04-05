@@ -1,0 +1,260 @@
+@font-face {
+    font-family: n27;
+    src: url(../fonts/n27-regular-webfont.ttf);
+}
+
+body{
+    font-family: n27, "Roboto Light", sans-serif;
+    font-size: 1.2rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1rem;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #2f404d;
+    border-radius: 0.5rem;
+}
+
+form label{
+    margin-bottom: 0.5rem;
+}
+form input[type=text]{
+    padding: 0.1rem 0 0.1rem 1rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+    font-size: 1rem;
+}
+form input[type=submit]{
+    width: 15rem;
+    font-family: n27, sans-serif;
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+    padding: 0.2rem 1rem;
+
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+
+    color: white;
+    background-color: #2f404d;
+
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+}
+form input[type=submit]:hover {
+    color: #f18f01;
+    transform: scale(1.1);
+}
+
+/*h5 wordt gebruikt om alle SONAR-issues op te lossen*/
+h5{
+    display: none;
+}
+
+.hidden{
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+div .hidden{
+    display: none;
+}
+
+.errormessage{
+    color: darkred;
+    font-weight: bolder;
+}
+
+.text-area{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+/*CONTAINERS AND PALLETS*/
+.pallets {
+    margin-left: 20.5rem;
+    padding: 2rem;
+    height: 100vh;
+}
+
+.containers h3, .pallets h3{
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+}
+.containers section:first-of-type, .pallets section:first-of-type{
+    margin-top: 3rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.containers section:first-of-type ul, .pallets section:first-of-type ul{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-left: 4rem;
+}
+
+.sort-by, .filter{
+    display: flex;
+    justify-content: left;
+
+    text-transform: uppercase;
+
+    width: 6rem;
+    padding: 0.6rem 0.4rem 0.6rem 3rem;
+
+    border: 0.1rem solid #2f404d;
+    border-radius: 0.5rem;
+
+    background-position: left 0.7rem center;
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.filter{
+    background-image: url("../media/icons/filter.png") ;
+}
+.sort-by{
+    background-image: url("../media/icons/sort-by.png") ;
+}
+.filter:hover, .sort-by:hover{
+    opacity: 90%;
+    background-color: #2f404d;
+    color: white;
+}
+#search-container, #search-pallet{
+    font-size: 1rem;
+    text-transform: uppercase;
+
+    width: 10rem;
+    padding: 0.6rem 0.4rem 0.6rem 3rem;
+
+    border: 0.1rem solid #2f404d;
+    border-radius: 0.5rem;
+
+    background-image: url("../media/icons/search.png") ;
+    background-position: left 0.7rem center;
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+
+    transition: all ease-in 0.3s;
+}
+
+/*SONAR WANTS THIS HERE*/
+.table-titles li, .table-rows li{
+    margin-right: 3rem;
+    width: 15rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-titles li{
+    margin-bottom: 1rem;
+}
+
+
+.containers section:first-of-type ul li, .pallets section:first-of-type ul li{
+    margin-left: 3rem;
+}
+
+.rented-pallets, .rented-containers{
+    margin-bottom: 5rem;
+}
+
+.containers .table, .pallets .table{
+    width: 100%;
+    overflow-y: scroll;
+    height: 19rem;
+}
+
+.table-rows, .table-titles{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+.table-titles{
+    border-radius: 0.5rem;
+    padding: 0.5rem 0 0.5rem 4rem;
+    font-size: 1.6rem;
+}
+.table-rows{
+    color: white;
+    background-color: #2f404d;
+
+    margin-bottom: 1rem;
+    padding: 0.5rem 0 0.5rem 4rem;
+
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in;
+}
+.table-rows:hover{
+    opacity: 70%;
+}
+
+/*ADD CONTAINER AND PALLETS*/
+.div-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.div-container > div{
+    margin: 2rem 2rem 0 0;
+    width: 14rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+}
+
+.add-new-item{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+.add-new-item img{
+    height: 20rem;
+}
+.add-new-item article{
+    display: flex;
+    align-items: center;
+
+    border: 0.1rem solid #2f404d;
+    margin-bottom: 5rem;
+
+}
+.add-new-container, .add-new-pallet{
+    width: 35rem;
+    padding: 2rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-new-container select, .add-new-pallet select{
+    font-family: n27, sans-serif;
+    width: 8rem;
+    border-radius: 0.5rem;
+    border: 0.1rem solid #2f404d;
+    font-size: 1.2rem;
+}
+#location, #pallet-location{
+    width: 18rem;
+}

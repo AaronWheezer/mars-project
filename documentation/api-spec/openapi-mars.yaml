@@ -1,0 +1,304 @@
+openapi: 3.0.3
+info:
+  title: 'Dusty Depot'
+  description: 'Dusty Depot is a fast and efficient way for businesses to store their valuables on Mars.'
+  version: 0.1.1
+servers:
+  - url: https://project-ii.ti.howest.be/mars-19
+    description: 'Public API'
+  - url: http://localhost:8080/
+    description: 'Local API'
+
+paths:
+  #Dusty API
+  /api/containers:
+    get:
+      tags:
+        - DustyAPI
+      description: Get all containers currently in all the warehouses
+      operationId: getContainers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+#DustAPI - Businesses
+  /api/containers/{size}:
+    post:
+      tags:
+        - DustyAPI - Businesses
+      description: Create a new, empty container with the given size
+      operationId: createContainer
+      parameters:
+        - in: path
+          name: size
+          required: true
+          schema:
+            type: string
+            enum: [big, medium, small]
+      responses:
+        '200':
+          description: A container has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/pallets/universalsize:
+    post:
+      tags:
+        - DustyAPI - Businesses
+      description: Create a new, empty pallet with the given size
+      operationId: createUniversalPallet
+      responses:
+        '200':
+          description: A pallet has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pallet'
+
+  /api/business/{owner}/containers:
+    get:
+      tags:
+        - DustyAPI - Businesses
+      description: Get all containers owned by the given owner
+      operationId: getContainersByOwner
+      parameters:
+        - in: path
+          name: owner
+          required: true
+          schema:
+            type: string
+          description: Owner
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/business/{owner}/pallets:
+    get:
+      tags:
+        - DustyAPI - Businesses
+      description: Get all pallets owned by the given owner
+      operationId: getPalletsByOwner
+      parameters:
+        - in: path
+          name: owner
+          required: true
+          schema:
+            type: string
+          description: Owner
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pallet'
+
+#DustyAPI - Location
+  /api/location/{location}/containers:
+    get:
+      tags:
+        - DustyAPI - Location
+      description: Get all containers located on the given location (warehouse)
+      operationId: getContainersByLocation
+      parameters:
+        - in: path
+          name: location
+          required: true
+          schema:
+            type: string
+          description: Location
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/location/{location}/pallets:
+    get:
+      tags:
+        - DustyAPI - Location
+      description: Get all pallets located on the given location (warehouse)
+      operationId: getPalletsByLocation
+      parameters:
+        - in: path
+          name: location
+          required: true
+          schema:
+            type: string
+          description: Location
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/location/{location}/{container}:
+    put:
+      tags:
+        - DustyAPI - Location
+      description: Change the location of a container
+      operationId: changeContainerLocation
+      parameters:
+        - in: path
+          name: location
+          required: true
+          schema:
+            type: string
+          description: Location
+        - in: path
+          name: container
+          required: true
+          schema:
+            type: integer
+          description: Container ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/location/{location}/{pallet}:
+    put:
+      tags:
+        - DustyAPI - Location
+      description: Change the location of a pallet
+      operationId: changePalletLocation
+      parameters:
+        - in: path
+          name: location
+          required: true
+          schema:
+            type: string
+          description: Location
+        - in: path
+          name: pallet
+          required: true
+          schema:
+            type: integer
+          description: Pallet ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pallet'
+
+#DustyAPI - Logistics
+  /api/conainers/{container}:
+    delete:
+      tags:
+        - DustyAPI - Logistics
+      description: Delete a container
+      operationId: deleteContainer
+      parameters:
+        - in: path
+          name: container
+          required: true
+          schema:
+            type: integer
+          description: Container ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Container'
+
+  /api/pallets/{pallet}:
+    delete:
+      tags:
+        - DustyAPI - Logistics
+      description: Delete a pallet
+      operationId: deletePallet
+      parameters:
+        - in: path
+          name: pallet
+          required: true
+          schema:
+            type: integer
+          description: Pallet ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pallet'
+
+
+
+
+components:
+
+  securitySchemes:
+    BusinessApiKey:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: businessKey
+    AdminApiKey:
+      type: apiKey
+      in: header
+      name: adminKey  # name of the header, query parameter or cookie
+
+  schemas:
+    Container:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        rentprice:
+          type: number
+          example: 354.50
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        Pallets:
+          type: array
+          items:
+              $ref: '#/components/schemas/Pallet'
+        owner:
+          type: string
+          example: "Dusty Depot"
+        location:
+          type: string
+          example: "Warehouse Space Station"
+
+    Pallet:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 0
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+  
+    Dimensions:
+      type: object
+      properties:
+        width:
+          type: number
+          example: 3
+        height:
+          type: number
+          example: 2.5
+        depth:
+          type: number
+          example: 6

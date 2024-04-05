@@ -1,0 +1,64 @@
+
+.navigation{
+    position: fixed;
+    width: 20.5rem;
+    height: 100vh;
+    background-color: #2f404d;
+    color: white;
+}
+.navigation h1{
+    font-size: 2.5rem;
+    margin: 2rem;
+}
+.navigation #search{
+    font-family: n27, "Roboto Light", sans-serif;
+    font-size: 1.3rem;
+
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    padding: 0.2rem 0 0.2rem 2rem;
+
+    background-image: url("../media/icons/search.png");
+    background-position: 3% center;
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-color: #2f404d;
+
+    border: none;
+    border-bottom: 0.2rem black solid;
+
+    transition: all ease-in 0.3s;
+}
+.navigation #search::placeholder{
+    color: white;
+}
+.navigation #search:focus{
+    border-radius: 0.3rem;
+    color: white;
+}
+.navigation #search:focus::placeholder{
+    color: #f18f01;
+}
+.navigation ul{
+    margin-left: 2rem;
+    width: 80%;
+}
+.navigation ul li{
+    font-size: 1.6rem;
+
+    margin-bottom: 1.5rem;
+    padding: 0.2rem 0;
+
+    transition: background-color, padding-left ease-in 0.3s;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.navigation ul li:hover{
+    background-color: #f18f01;
+    padding: 0.2rem 2rem;
+}
+
+.navigation .selected{
+    background-color: #f18f01;
+    padding: 0.2rem 2rem;
+}

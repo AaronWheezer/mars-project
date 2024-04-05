@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COMPANY NAME</title>
+
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/nav.css">
+    <link rel="stylesheet" href="../assets/css/company.css">
+    <link rel="stylesheet" href="../assets/css/pop-ups.css">
+
+
+    <script src="../assets/js/html-connection/script.js"></script>
+    <script src="../assets/js/server-connection/main.js"></script>
+    <script src="../assets/js/server-connection/api.js"></script>
+    <script src="../assets/js/html-connection/company-data.js"></script>
+    <script src="../assets/js/html-connection/companyMap.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@9.0.2/dist/dbr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/barcode-detection@0.4.1/dist/barcode-detector.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/ol@v7.1.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css"/>
+</head>
+<body>
+<aside class="navigation">
+    <h1>DASHBOARD</h1>
+    <label for="search"></label>
+    <input type="text" id="search" placeholder="search">
+    <nav>
+        <ul>
+            <li id="home"><a href="../">Home</a></li>
+            <li id="containers"><a href="../">Containers</a></li>
+            <li id="pallets"><a href="../">Pallets</a></li>
+            <li id="qr-code"><a href="../">QR-code</a></li>
+            <li id="damage-report"><a href="../">Report</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<div class="popup-background"></div>
+
+<div class="customer">
+    <div class="grid-customer">
+        <div class="customer-data">
+            <section>
+                <h3>Customer: <span></span></h3>
+                <label for="warehouses">Current Stock At:</label>
+                <select name="warehouses" id="warehouses">
+                    <option value="warehouse_1">Warehouse Space Station</option>
+                    <option value="warehouse_2">Warehouse Space Station 2</option>
+                    <option value="warehouse_3">Warehouse Space Station 3</option>
+                    <option value="warehouse_4">Warehouse Space Station 4</option>
+                    <option value="warehouse_5">Warehouse Space Station 5</option>
+                    <option value="warehouse_6">Warehouse Space Station 6</option>
+                </select>
+            </section>
+            <section>
+                <h5>sonar</h5>
+                <img src="../assets/media/logo-placeholder.png" alt="logo">
+            </section>
+        </div>
+        <div class="warehouse-content">
+            <div class="warehouse-titles">
+                <h4>Warehouse_X</h4>
+                <a class="view-all" href="#" >view all</a>
+            </div>
+            <div class="warehouse-container-location"></div>
+        </div>
+
+        <div class="customer-chart">
+            <canvas id="bar-chart-company"></canvas>
+        </div>
+        
+        <div id="customer-map" class="customer-map">
+        </div>
+
+        <div class="all-warehouse-content hidden">
+            <div class="warehouse-titles">
+                <h4>Warehouse_X</h4>
+                <a class="close-all" href="#">close all</a>
+            </div>
+            <div class="warehouse-container-location"></div>
+        </div>
+    </div>
+
+    <!--TODO -->
+    <div class="view-one-container hidden">
+        <section>
+            <h5>sonar</h5>
+            <div class="warehouse-container-location"></div>
+            <div class="warehouse-container-content-location"></div>
+        </section>
+        <section class="warehouse-container-comments-location">
+            <h5>sonar</h5>
+
+        </section>
+
+    </div>
+</div>
+
+<div class="pop-up hidden" id="container-remove-confirmation">
+    <div>
+        <p class="text-area">Are you sure you want to remove this container?</p>
+        <div class="pop-up-buttons">
+            <p class="cancel">Cancel</p>
+            <p id="confirm">Remove Container</p>
+        </div>
+        <div class="container-details"></div>
+    </div>
+</div>
+<div class="pop-up hidden" id="container-remove-success">
+    <p class="text-area">You have successfully removed a container!</p>
+    <div class="pop-up-buttons">
+        <p class="close">Close</p>
+    </div>
+</div>
+
+<div class="pop-up hidden" id="container-update-form">
+    <div>
+        <p class="text-area">Are you sure you want to update this container?</p>
+        <form>
+            <label for="new-location">New Location</label>
+            <input type="text" name="new-location" id="new-location">
+            <div>
+                <label for="new-lat">New Latitude</label>
+                <input type="text" name="new-lat" id="new-lat">
+                <label for="new-long">New Longitude</label>
+                <input type="text" name="new-long" id="new-long">
+            </div>
+            <div class="pop-up-buttons">
+                <button class="cancel-update" type="button">Cancel</button>
+                <button id="confirm-update" type="button">Update</button>
+            </div>
+        </form>
+        <p class="errormessage"></p>
+        <div class="container-details"></div>
+    </div>
+</div>
+<div class="pop-up hidden" id="container-update-success">
+    <p class="text-area">You have successfully updated a container!</p>
+    <div class="pop-up-buttons">
+        <p class="close">Close</p>
+    </div>
+</div>
+
+</body>
+</html>

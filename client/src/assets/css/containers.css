@@ -1,0 +1,54 @@
+.containers{
+    margin-left: 20.5rem;
+    padding: 2rem;
+    height: 100vh;
+}
+
+.add-containers {
+    width: 70rem;
+    margin-bottom: 10rem;
+}
+
+
+.small-container, .medium-container, .large-container{
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    background-position: center ;
+    width: 2rem;
+    height: 2rem;
+}
+.small-container{
+    background-image: url("../media/S.png");
+}
+.medium-container{
+    background-image: url("../media/M.png");
+}
+.large-container{
+    background-image: url("../media/L.png");
+}
+
+div.hidden{
+    display: none;
+}
+
+
+.filter:hover{
+    background-color: unset;
+}
+.filter .tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    width: auto;
+    height: 2rem;
+    background-color: #2f404d;
+    color: white;
+    text-align: center;
+
+    position: absolute;
+    z-index: 3;
+}
+.filter:hover .tooltip {
+    visibility: visible;
+}
